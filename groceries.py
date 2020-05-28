@@ -14,12 +14,6 @@ def to_usd(my_price):
     """
     return f"(${my_price:,.2f})" #> $12,000.71
 
-def depo_convert(num):
-    if num > 1:
-        return f"({num} products)"
-    else:
-        return f"({num} product)"
-
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -51,33 +45,22 @@ print("THERE ARE", len(sorted_list), "PRODUCTS")
 print("---------------")
 
 for x in sorted_list:
-    department_list.append(x["department"])
-    print("+", x["name"],to_usd(x["price"]))
+    if x["department"] not in department_list:
+        department_list.append(x["department"])
+        print("+", x["name"],to_usd(x["price"]))
 # pprint(products)
-
-babies_count = len([n for n in products if n["department"] == "babies"])
-beverages_count = len([n for n in products if n["department"] == "beverages"])
-dairy_count = len([n for n in products if n["department"] == "dairy eggs"])
-dry_count = len([n for n in products if n["department"] == "dry goods pasta"])
-frozen_count = len([n for n in products if n["department"] == "frozen"])
-household_count = len([n for n in products if n["department"] == "household"])
-meat_count = len([n for n in products if n["department"] == "meat seafood"])
-pantry_count = len([n for n in products if n["department"] == "pantry"])
-personal_count = len([n for n in products if n["department"] == "personal care"])
-snacks_count = len([n for n in products if n["department"] == "snacks"])
-department_list = list(set(department_list))
 
 print("---------------")
 print("THERE ARE", len(department_list), "DEPARTMENTS")
 print("---------------")
-print("+ Babies",depo_convert(babies_count))
-print("+ Beverages",depo_convert(beverages_count))
-print("+ Dairy Eggs",depo_convert(dairy_count))
-print("+ Dry Goods Pasta",depo_convert(dry_count))
-print("+ Frozen",depo_convert(frozen_count))
-print("+ Household",depo_convert(household_count))
-print("+ Meat Seafood",depo_convert(meat_count))
-print("+ Pantry",depo_convert(pantry_count))
-print("+ Personal Care",depo_convert(personal_count))
-print("+ Snacks",depo_convert(snacks_count))
+
+department_list = sorted(department_list)  
+
+for dept_name in department_list:
+    matching_products = len([x for x in products if x["department"] == dept_name])
+    if matching_products > 1:
+        print(f"+ {dept_name.title()} ({matching_products} products)")
+    else:
+        print(f"+ {dept_name.title()} ({matching_products} product)")
+
 # TODO: write some Python code here to produce the desired output
