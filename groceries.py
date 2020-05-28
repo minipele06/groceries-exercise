@@ -20,36 +20,6 @@ def depo_convert(num):
     else:
         return f"({num} product)"
 
-def babies(obj):
-    return obj["department"] == "babies"
-
-def beverages(obj):
-    return obj["department"] == "beverages"
-
-def dairy(obj):
-    return obj["department"] == "dairy eggs"
-
-def dry(obj):
-    return obj["department"] == "dry goods pasta"
-
-def frozen(obj):
-    return obj["department"] == "frozen"
-
-def household(obj):
-    return obj["department"] == "household"
-
-def meat(obj):
-    return obj["department"] == "meat seafood"
-
-def pantry(obj):
-    return obj["department"] == "pantry"
-
-def personal(obj):
-    return obj["department"] == "personal care"
-
-def snacks(obj):
-    return obj["department"] == "snacks"
-
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -85,16 +55,16 @@ for x in sorted_list:
     print("+", x["name"],to_usd(x["price"]))
 # pprint(products)
 
-babies_count = len(list(filter(babies,products)))
-beverages_count = len(list(filter(beverages,products)))
-dairy_count = len(list(filter(dairy,products)))
-dry_count = len(list(filter(dry,products)))
-frozen_count = len(list(filter(frozen,products)))
-household_count = len(list(filter(household,products)))
-meat_count = len(list(filter(meat,products)))
-pantry_count = len(list(filter(pantry,products)))
-personal_count = len(list(filter(personal,products)))
-snacks_count = len(list(filter(snacks,products)))
+babies_count = len([n for n in products if n["department"] == "babies"])
+beverages_count = len([n for n in products if n["department"] == "beverages"])
+dairy_count = len([n for n in products if n["department"] == "dairy eggs"])
+dry_count = len([n for n in products if n["department"] == "dry goods pasta"])
+frozen_count = len([n for n in products if n["department"] == "frozen"])
+household_count = len([n for n in products if n["department"] == "household"])
+meat_count = len([n for n in products if n["department"] == "meat seafood"])
+pantry_count = len([n for n in products if n["department"] == "pantry"])
+personal_count = len([n for n in products if n["department"] == "personal care"])
+snacks_count = len([n for n in products if n["department"] == "snacks"])
 department_list = list(set(department_list))
 
 print("---------------")
