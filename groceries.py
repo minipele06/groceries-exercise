@@ -14,6 +14,42 @@ def to_usd(my_price):
     """
     return f"(${my_price:,.2f})" #> $12,000.71
 
+def depo_convert(num):
+    if num > 1:
+        return f"({num} products)"
+    else:
+        return f"({num} product)"
+
+def babies(obj):
+    return obj["department"] == "babies"
+
+def beverages(obj):
+    return obj["department"] == "beverages"
+
+def dairy(obj):
+    return obj["department"] == "dairy eggs"
+
+def dry(obj):
+    return obj["department"] == "dry goods pasta"
+
+def frozen(obj):
+    return obj["department"] == "frozen"
+
+def household(obj):
+    return obj["department"] == "household"
+
+def meat(obj):
+    return obj["department"] == "meat seafood"
+
+def pantry(obj):
+    return obj["department"] == "pantry"
+
+def personal(obj):
+    return obj["department"] == "personal care"
+
+def snacks(obj):
+    return obj["department"] == "snacks"
+
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -38,13 +74,40 @@ products = [
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
 sorted_list = sorted(products, key=lambda x: x["name"])
+department_list = []
 
 print("---------------")
 print("THERE ARE", len(sorted_list), "PRODUCTS")
 print("---------------")
 
 for x in sorted_list:
+    department_list.append(x["department"])
     print("+", x["name"],to_usd(x["price"]))
 # pprint(products)
 
+babies_count = len(list(filter(babies,products)))
+beverages_count = len(list(filter(beverages,products)))
+dairy_count = len(list(filter(dairy,products)))
+dry_count = len(list(filter(dry,products)))
+frozen_count = len(list(filter(frozen,products)))
+household_count = len(list(filter(household,products)))
+meat_count = len(list(filter(meat,products)))
+pantry_count = len(list(filter(pantry,products)))
+personal_count = len(list(filter(personal,products)))
+snacks_count = len(list(filter(snacks,products)))
+department_list = list(set(department_list))
+
+print("---------------")
+print("THERE ARE", len(department_list), "DEPARTMENTS")
+print("---------------")
+print("+ Babies",depo_convert(babies_count))
+print("+ Beverages",depo_convert(beverages_count))
+print("+ Dairy Eggs",depo_convert(dairy_count))
+print("+ Dry Goods Pasta",depo_convert(dry_count))
+print("+ Frozen",depo_convert(frozen_count))
+print("+ Household",depo_convert(household_count))
+print("+ Meat Seafood",depo_convert(meat_count))
+print("+ Pantry",depo_convert(pantry_count))
+print("+ Personal Care",depo_convert(personal_count))
+print("+ Snacks",depo_convert(snacks_count))
 # TODO: write some Python code here to produce the desired output
