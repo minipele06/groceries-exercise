@@ -63,4 +63,6 @@ for dept_name in department_list:
     else:
         print(f"+ {dept_name.title()} ({matching_products} product)")
 
+print([x["department"] for x in products if x["department"] == "snacks"][0])
+
 # TODO: write some Python code here to produce the desired output
