@@ -6,7 +6,11 @@ import operator
 
 import pandas
 
-csv_filepath = "products.csv"
+import os
+
+#csv_filepath = "products.csv"
+
+csv_filepath = os.path.join(os.path.dirname(os.path.dirname(__file__)), "..", "groceries-exercise", "products.csv")
 
 df = pandas.read_csv(csv_filepath)
 
