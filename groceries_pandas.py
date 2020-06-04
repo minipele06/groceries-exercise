@@ -22,7 +22,7 @@ def to_usd(my_price):
     
     Returns: $4,000.44
     """
-    return f"(${my_price:,.2f})" #> $12,000.71
+    return f"(${my_price:,.2f})"
 
 sorted_list = sorted(products, key=lambda x: x["name"])
 department_list = []
@@ -35,7 +35,7 @@ for x in sorted_list:
     if x["department"] not in department_list:
         department_list.append(x["department"])
         print("+", x["name"],to_usd(float(x["price"])))
-# pprint(products)
+
 
 print("---------------")
 print("THERE ARE", len(department_list), "DEPARTMENTS")
